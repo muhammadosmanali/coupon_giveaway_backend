@@ -1,13 +1,24 @@
 const express = require("express");
-
+const cors = require("cors");
 const request = require("request");
 const cheerio = require("cheerio");
 
 const Giveaway = require("../models/giveaway");
 
+var whitelist = ['http://localhost:4200', 'https://muhammadusmanali.codes/']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
 const router = express.Router();
 
-router.get("/giveaways/:id", (req, res, next) => {
+router.get("/giveaways/:id",cors(corsOptions), (req, res, next) => {
   let url = "";
   if(req.params.id == 1) {
     url = "https://sharewareonsale.com/product-tag/giveaway+active-deals";
@@ -67,7 +78,7 @@ router.get("/giveaways/:id", (req, res, next) => {
   }, 500);
 });
 
-router.get("/giveaway/getDetail/:id", (req, res, next) => {
+router.get("/giveaway/getDetail/:id",cors(corsOptions), (req, res, next) => {
   let url = "https://sharewareonsale.com/s/" + req.params.id;
   let data = []
 
@@ -99,7 +110,7 @@ router.get("/giveaway/getDetail/:id", (req, res, next) => {
   }, 500);
 });
 
-router.get("/giveaway/getPagination", (req, res, next) => {
+router.get("/giveaway/getPagination",cors(corsOptions), (req, res, next) => {
   let data = 0;
   let url = "https://sharewareonsale.com/product-tag/giveaway+active-deals";
 

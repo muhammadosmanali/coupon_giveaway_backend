@@ -1,13 +1,24 @@
 const express = require("express");
-
+const cors = require("cors");
 const request = require("request");
 const cheerio = require("cheerio");
 
 const Coupon = require("../models/coupon");
 
+var whitelist = ['http://localhost:4200', 'https://muhammadusmanali.codes/']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
 const router = express.Router();
 
-router.get("/getCourses/:id", (req, res, next) => {
+router.get("/getCourses/:id", cors(corsOptions), (req, res, next) => {
   let url = "";
   if (req.params.id == 1) {
     url = "https://www.discudemy.com/all";
@@ -86,7 +97,7 @@ router.get("/getCourses/:id", (req, res, next) => {
   }, 500);
 });
 
-router.get("/getCoupon/:id", (req, res, next) => {
+router.get("/getCoupon/:id",cors(corsOptions), (req, res, next) => {
   const url = "https://www.discudemy.com/go/" + req.params.id;
   let link = [];
   request(url, (error, response, html) => {
