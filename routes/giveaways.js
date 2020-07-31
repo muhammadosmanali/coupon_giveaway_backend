@@ -65,6 +65,7 @@ router.get("/giveaways/:id", (req, res, next) => {
       clearInterval(interval);
     }
   }, 500);
+  next();
 });
 
 router.get("/giveaway/getDetail/:id", (req, res, next) => {
@@ -97,6 +98,7 @@ router.get("/giveaway/getDetail/:id", (req, res, next) => {
       clearInterval(interval);
     }
   }, 500);
+  next();
 });
 
 router.get("/giveaway/getPagination", (req, res, next) => {
