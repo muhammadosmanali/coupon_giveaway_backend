@@ -84,7 +84,6 @@ router.get("/getCourses/:id", (req, res, next) => {
       clearInterval(interval);
     }
   }, 500);
-  next();
 });
 
 router.get("/getCoupon/:id", (req, res, next) => {
