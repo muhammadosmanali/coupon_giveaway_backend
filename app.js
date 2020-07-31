@@ -11,8 +11,7 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200"),
     res.setHeader(
-      "Access-Control-Allow-Headers",
-      "*"
+      "Access-Control-Allow-Headers", "*"
     ),
     res.setHeader("Access-Control-Allow-Methods", " GET, OPTIONS");
   next();
@@ -43,8 +42,8 @@ app.use((req, res, next) => {
 //   }, 500)
 // });
 
-app.use("", couponRoutes);
+app.use("/api", couponRoutes);
 
-app.use("", giveawayRoutes);
+app.use("/api", giveawayRoutes);
 
 module.exports = app;

@@ -7,7 +7,7 @@ const Coupon = require("../models/coupon");
 
 const router = express.Router();
 
-router.get("/api/getCourses/:id", (req, res, next) => {
+router.get("/getCourses/:id", (req, res, next) => {
   let url = "";
   if (req.params.id == 1) {
     url = "https://www.discudemy.com/all";
@@ -86,7 +86,7 @@ router.get("/api/getCourses/:id", (req, res, next) => {
   }, 500);
 });
 
-router.get("/api/getCoupon/:id", (req, res, next) => {
+router.get("/getCoupon/:id", (req, res, next) => {
   const url = "https://www.discudemy.com/go/" + req.params.id;
   let link = [];
   request(url, (error, response, html) => {

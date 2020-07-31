@@ -7,7 +7,7 @@ const Giveaway = require("../models/giveaway");
 
 const router = express.Router();
 
-router.get("/api/giveaways/:id", (req, res, next) => {
+router.get("/giveaways/:id", (req, res, next) => {
   let url = "";
   if(req.params.id == 1) {
     url = "https://sharewareonsale.com/product-tag/giveaway+active-deals";
@@ -67,7 +67,7 @@ router.get("/api/giveaways/:id", (req, res, next) => {
   }, 500);
 });
 
-router.get("/api/giveaway/getDetail/:id", (req, res, next) => {
+router.get("/giveaway/getDetail/:id", (req, res, next) => {
   let url = "https://sharewareonsale.com/s/" + req.params.id;
   let data = []
 
@@ -99,7 +99,7 @@ router.get("/api/giveaway/getDetail/:id", (req, res, next) => {
   }, 500);
 });
 
-router.get("/api/giveaway/getPagination", (req, res, next) => {
+router.get("/giveaway/getPagination", (req, res, next) => {
   let data = 0;
   let url = "https://sharewareonsale.com/product-tag/giveaway+active-deals";
 
